@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.6'>
-  <model name='Hummingbot_v1.0.1_1'>
+  <model name='hummingbot'>
     <link name='main_box'>
       <inertial>
         <mass>2.04447</mass>
@@ -99,7 +99,7 @@
         </surface>
       </collision>
     </link>
-    <link name='ball'>
+    <link name='ball_wheel'>
       <inertial>
         <mass>1</mass>
         <inertia>
@@ -512,7 +512,7 @@
     </link>
     <joint name='ball_link' type='ball'>
       <parent>main_box</parent>
-      <child>ball</child>
+      <child>ball_wheel</child>
       <pose frame=''>0 0 0 0 -0 0</pose>
       <physics>
         <ode>
@@ -612,5 +612,6 @@
     </joint>
     <static>0</static>
     <allow_auto_disable>1</allow_auto_disable>
+   <plugin name="hummingbot_wheel_control" file="libhummingbot_plugin.so"/>
   </model>
-</sdf>
+ </sdf>
