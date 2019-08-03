@@ -9,7 +9,7 @@ from std_msgs.msg import Float32
 
 NODE_NAME = "rover"
 SUB_TOPIC_NAME = "/control"
-PUB_TOPIC_NAMES = ['left_vel','right_vel']
+PUB_TOPIC_NAMES = ['/gazebo_hummingbot_client/left_vel','/gazebo_hummingbot_client/right_vel']
 
 
 def calculate_velocity(linear,angular):
