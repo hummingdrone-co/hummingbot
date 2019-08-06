@@ -57,7 +57,7 @@ namespace gazebo
 
 
             //Setup the P-controller, with a gain of 0.1/
-            this->pid = common::PID(0.1,0,0);
+            this->pid = common::PID(1,0,0);
 
             //Apply P-controller to the joints
             this->model->GetJointController()->SetVelocityPID(
@@ -66,31 +66,29 @@ namespace gazebo
             this->model->GetJointController()->SetVelocityPID(
             this->rightJoint->GetScopedName(), this->pid);
 
-            //Debug & Demonstration
-            //SetVelocity(this->rightJoint, 11.0);
+            //Set velocity as 0
+            SetVelocity(this->rightJoint, 0.0);
+            SetVelocity(this->leftJoint, 0.0);
 
-
-            // Create a Gazebo node
             /*
+            // Create a Gazebo node
             this->node = transport::NodePtr(new transport::Node());
             #if GAZEBO_MAJOR_VERSION < 8
                 this->node->Init(this->model->GetWorld()->GetName());
             #else
                 this->node->Init(this->model->GetWorld()->Name());
             #endif
-            */
+            
             
             // Create Gazebo topic names
-            /*
             std::string leftJointTopicName = "~/hummingbot/left_vel";
             std::string rightJointTopicName = "~/hummingbot/right_vel";
-            */
+           
             
             // Subscribe to the topics, and register thought callbacks          
-            /*
             this->leftSub = this->node->Subscribe(leftJointTopicName, &HummingbotPlugin::leftCallback, this);
             this->rightSub = this->node->Subscribe(rightJointTopicName, &HummingbotPlugin::rightCallback, this);
-            */
+             */
 
             // Initialize the ROS if it has not already be initialized.
             if (!ros::isInitialized())
@@ -142,7 +140,7 @@ namespace gazebo
         {
             // Set the joint's target velocity
             this->model->GetJointController()->SetVelocityTarget(
-                _joint->GetScopedName(), _vel);
+                _joint->GetScopedName(), -1*_vel);
 
         }
 
