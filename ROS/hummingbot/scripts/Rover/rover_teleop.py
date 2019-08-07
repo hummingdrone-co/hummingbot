@@ -40,7 +40,13 @@ Communications Failed
 
 
 def check_limits(input, low, high):
-    """ checks the limits of linearity and angularity."""
+    """ 
+    checks the limits of linearity and angularity.
+
+    input : Desired velocity 
+    low :  Minimum (Angular or Linear) velocity 
+    high : Maximum (Angular or Linear) velocity
+    """
     if input < low:
         input = low
     elif input > high:
