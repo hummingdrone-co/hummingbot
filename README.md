@@ -11,18 +11,18 @@ Hummingdrone Nvidia Jetbot integration
 cp ./Gazebo/Model/Hummingbot_* ~/.gazebo/models
 ```
 
-### Install Gazebo Plugin
+#### Install Gazebo Plugin
 
 ```
-mkdir ~/hummingbot_plugin/
-cp ./Gazebo/Plugins/* ~/hummingbot_plugin/ -rf
-cd ~/hummingbot_plugin/
+mkdir ~/catkin_ws/src/hummingbot_plugin/
+cp ./Gazebo/Plugins/* ~/catkin_ws/src/hummingbot_plugin/ -rf
+cd ~/catkin_ws/src/hummingbot_plugin/
 mkdir build && cd build
 cmake ..
 make
 ```
 
-### Install ROS Packages
+#### Install ROS Packages
 
 ```
 cp ./ROS/hummingbot/ ~/catkin_ws/src/
@@ -31,42 +31,39 @@ cd ~/catkin_ws/ && catkin_make
 ## Check out the Model
 
 * Open terminal
-* roslaunch gazebo_ros empty_world.launch
+```
+roslaunch gazebo_ros empty_world.launch 
+```
 * Insert model from the Insert Tab
 
-## Playing
+## PLAYING
 
+#### Running Gazebo
+```
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/build
+```
+* **HINT : In order to run your plugins you should run the command above in every terminal session. But there is an easy way as always! If you do not want to write it everytime then you can add it into your .bashrc file with the commands below.**
 
-### Running Hummingbot Package and Topics
+    ``` 
+    echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/build" >> ~/.bashrc
+    source ~/.bashrc
+    ```
 
-* Run
 ```
-roscore
+roslaunch hummingbot hummingbot.launch
 ```
-* OPEN ANOTHER TERMINAL
-```
-rosrun hummingbot rover.py
-```
-* OPEN ANOTHER TERMINAL
+
+#### Running Teleoperation
 ```
 rosrun hummingbot rover_teleop.py
 ```
-* PUSH (W,A,S,D,X or SPACE) BUTTON in **rover_teleop.py** TERMINAL
 
-### Running Gazebo Model with plugin
+Control your hummingbot from this terminal!
 
-*Please make sure that ros master is working before run below commands.
-```
-cd ~/hummingbot_plugin/
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/hummingbot_plugin/build
-gazebo --verbose hummingbot_test.world
-```
 
 ### Test?
 
-* OPEN ANOTHER TERMINAL
-
 ```
-rostopic echo /left_vel
+rostopic echo /gazebo_hummingbot_client/left_vel
 ```
 **You should see the velocity of left wheel.**
