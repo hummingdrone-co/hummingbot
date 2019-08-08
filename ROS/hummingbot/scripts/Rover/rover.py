@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#Authors :
+#Authors : Hasan Basri Aykol [basri@hummingdrone.co],
+#          Mustafa Durmuş    [mustafa@hummingdrone.co]
 
 import rospy
 from geometry_msgs.msg import Twist
