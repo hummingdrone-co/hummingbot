@@ -8,8 +8,8 @@ import sys
 import select
 import os
 
-if os.name == 'nt':  # means you work on Windows OS
-    import msvcrt     # for windows terminal controls
+if os.name == 'nt':  # if you work on Windows OS
+    import msvcrt    # for windows terminal controls
 else:
     import tty
     import termios  # for unix terminal controls
@@ -43,9 +43,11 @@ def check_limits(input, low, high):
     """ 
     checks the limits of linearity and angularity.
 
-    input : Desired velocity 
-    low :  Minimum (Angular or Linear) velocity 
-    high : Maximum (Angular or Linear) velocity
+    input :  Desired velocity 
+
+    low   :  Minimum (Angular or Linear) velocity 
+    
+    high  :  Maximum (Angular or Linear) velocity
     """
     if input < low:
         input = low
@@ -147,7 +149,7 @@ def publish_message():
 
 
 if __name__ == "__main__":
-    if os.name != 'nt':  # for windows settings
+    if os.name != 'nt':  # for unix settings
         settings = termios.tcgetattr(sys.stdin)
 
     rospy.init_node(NODE_NAME)

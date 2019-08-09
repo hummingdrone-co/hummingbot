@@ -15,15 +15,15 @@ PUB_TOPIC_NAMES = ['/gazebo_hummingbot_client/left_vel','/gazebo_hummingbot_clie
 def calculate_velocity(linear,angular):
     """
     calculates speed of the wheels and returns them.
- 
+
     Formula:
-    left  wheel velocity : twist.linear.x - ( twist.angular.z / 2 ) 
+    left  wheel velocity : twist.linear.x - ( twist.angular.z / 2 )
     right wheel velocity : twist.linear.x + ( twist.angular.z / 2 )
-    
+
     Parameters:
     linear  (float32) : value of twist.linear.x
     angular (float32) : value of twist.angular.z
-    
+
     Returns:
     float32,float32
     """
@@ -47,20 +47,20 @@ def callback_create_publisher(twist):
 
 
 if __name__ == '__main__':
-    
+
     # node created
     rospy.init_node(NODE_NAME)
-    
+
     # publishers created
     pub_left  = rospy.Publisher(PUB_TOPIC_NAMES[0],Float32,queue_size = 10)
     pub_right = rospy.Publisher(PUB_TOPIC_NAMES[1],Float32,queue_size = 10)
-    
+
     # message types created
     msg_left  = Float32()
     msg_right = Float32()
-    
+
     #subscriber created
     sub = rospy.Subscriber(SUB_TOPIC_NAME,Twist,callback_create_publisher)
-    
+
     rospy.spin()
-    
+
