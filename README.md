@@ -28,6 +28,29 @@ make
 cp ./ROS/hummingbot/ ~/catkin_ws/src/
 cd ~/catkin_ws/ && catkin_make
 ```
+
+#### Install Joystick
+- Install joy package.
+```
+sudo apt-get install ros-melodic-joy
+```
+- Configure your joystick to your computer.
+```
+ls /dev/input
+```
+- You should see all input devices here. Joysticks are referred to by **jsX**. Our case it is **js1**.
+
+- Test your joystick.
+```
+sudo jstest /dev/input/js1
+```
+* Move your joystick and see the data changes.
+
+- Make your joystick accesible for ROS node with command below.
+```
+sudo chmod a+rw /dev/input/js1
+```
+
 ## Check out the Model
 
 * Open terminal
@@ -38,7 +61,6 @@ roslaunch gazebo_ros empty_world.launch
 
 ## PLAYING
 
-#### Running Gazebo
 ```
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/build
 ```
@@ -53,12 +75,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/buil
 roslaunch hummingbot hummingbot.launch
 ```
 
-#### Running Teleoperation
-```
-rosrun hummingbot rover_teleop.py
-```
-
-Control your hummingbot from this terminal!
+**Control your hummingbot!**
 
 
 ### Test?
