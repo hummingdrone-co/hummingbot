@@ -60,7 +60,12 @@ roslaunch gazebo_ros empty_world.launch
 * Insert model from the Insert Tab
 
 ## PLAYING
-
+- > **WARNING**: If your joystick reference is different than 'js1':
+    - Please find the command below in **hummingbot.launch** file and change the value part with yours.
+        ```
+        <param name="dev" type="string" value="/dev/input/js1" /> 
+        ```
+- Export your build directory
 ```
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/build
 ```
@@ -70,12 +75,11 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/buil
     echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/build" >> ~/.bashrc
     source ~/.bashrc
     ```
-
+- **Finally, run and control your hummingbot!**
 ```
 roslaunch hummingbot hummingbot.launch
 ```
 
-**Control your hummingbot!**
 
 
 ### Test?
