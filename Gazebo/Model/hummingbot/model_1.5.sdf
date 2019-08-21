@@ -2,9 +2,9 @@
 <sdf version='1.6'>
   <model name='hummingbot'>
     <link name='main_box'>
-      <pose>0.0 0.0 0.09 0 -0 0</pose>
+      <pose>0.0 0.0 0.07 0 -0 0</pose>
       <inertial>
-        <mass>1.5</mass>
+        <mass>50</mass>
         <inertia>
           <ixx>0.00533333</ixx>
           <ixy>0</ixy>
@@ -55,7 +55,7 @@
       </collision>
     </link>
     <link name='ball_wheel'>
-      <pose frame=''>-0.048 -0.002958 0.017 0 -0 0</pose>
+      <pose frame=''>-0.048 -0.002958 0.0127 0 -0 0</pose>
       <inertial>
         <mass>0.01</mass>
         <inertia>
@@ -108,7 +108,7 @@
       </collision>
     </link>
     <link name='camera_link'>
-      <pose frame=''>0.065 0 0.117 0 0.2  0</pose>
+      <pose frame=''>0.065 0 0.115 0 0.2  0</pose>
       <inertial>
         <mass>0.03</mass>
         <inertia>
@@ -176,7 +176,7 @@
       </collision>
     </link>
     <link name='left_wheel'>
-      <pose frame=''>0.065 0.049 0.05 1.5707 -0 0</pose>
+      <pose frame=''>0.065 0.049 0.03 1.5707 -0 0</pose>
       <inertial>
         <mass>0.2</mass>
         <inertia>
@@ -231,7 +231,7 @@
        </collision>
     </link>
     <link name='right_wheel'>
-      <pose frame=''>0.065 -0.049 0.05 1.5707 -0 0</pose>
+      <pose frame=''>0.065 -0.049 0.03 1.5707 -0 0</pose>
       <inertial>
         <mass>0.1</mass>
         <inertia>
