@@ -10,7 +10,7 @@ from std_msgs.msg import Float32
 NODE_NAME = "rover"
 SUB_TOPIC_NAME = "/control"
 PUB_TOPIC_NAMES = ['/gazebo_hummingbot_client/left_vel','/gazebo_hummingbot_client/right_vel']
-
+VELOCITY_COEF_PARAM = 'velocity_coef'
 
 def calculate_velocity(linear,angular):
     """
@@ -27,8 +27,8 @@ def calculate_velocity(linear,angular):
     Returns:
     float32,float32
     """
-    left_wheel  = linear - (angular / 2)
-    right_wheel = linear + (angular / 2)
+    left_wheel  = vel_coef * (linear - (angular / 2))
+    right_wheel = vel_coef * (linear + (angular / 2))
 
     return left_wheel,right_wheel
 
@@ -50,6 +50,9 @@ if __name__ == '__main__':
 
     # node created
     rospy.init_node(NODE_NAME)
+
+    #Read velocity coefficient parameter
+    vel_coef = rospy.get_param(VELOCITY_COEF_PARAM)
 
     # publishers created
     pub_left  = rospy.Publisher(PUB_TOPIC_NAMES[0],Float32,queue_size = 10)

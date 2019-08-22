@@ -9,7 +9,7 @@
   <node name="rover" pkg="hummingbot" type="rover.py"/>
  <!-- joy node -->
   <node name="joy" respawn="true" pkg="joy" type="joy_node">
-    <param name="dev" type="string" value="/dev/input/js1" />
+    <param name="dev" type="string" value="/dev/input/js0" />
     <param name="deadzone" value="0.12" />
   </node>
   <node name="joy_teleop" pkg="hummingbot" type="joystick.py"/>
@@ -19,4 +19,5 @@
   <param name="axis_angular" value="0" type="int"/>
   <param name="scale_linear" value="2" type="double"/>
   <param name="scale_angular" value="2" type="double"/>
+  <param name="velocity_coef" value="4" type="double"/>
 </launch>
