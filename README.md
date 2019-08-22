@@ -11,25 +11,27 @@ Hummingdrone Nvidia Jetbot integration
 cp ./Gazebo/Model/Hummingbot_* ~/.gazebo/models
 ```
 
-#### Install Gazebo Plugin
+#### Install Gazebo Plugins
 
 ```shell
 mkdir ~/catkin_ws/src/hummingbot_plugin/
 cp ./Gazebo/Plugins/* ~/catkin_ws/src/hummingbot_plugin/ -rf
-cd ~/catkin_ws/src/hummingbot_plugin/
-mkdir build && cd build
-cmake ..
-make
 ```
 
 #### Install ROS Packages
 
 ```shell
 cp ./ROS/hummingbot/ ~/catkin_ws/src/
+```
+
+#### Build Your Packages and Plugins
+
+```shell
 cd ~/catkin_ws/ && catkin_make
 ```
 
 #### Install Joystick
+
 - Install joy package.
 ```shell
 sudo apt-get install ros-melodic-joy
@@ -40,13 +42,13 @@ ls /dev/input
 ```
 - You should see all input devices here. Joysticks are referred to by **jsX**. Our case it is **js1**.
 
-- Test your joystick.
+- Test your joystick with command below.
 ```shell
 sudo jstest /dev/input/js1
 ```
 * Move your joystick and see the data changes.
 
-- Make your joystick accesible for ROS node with command below.
+- Make your joystick accessible for ROS node with command below.
 ```shell
 sudo chmod a+rw /dev/input/js1
 ```
@@ -61,7 +63,7 @@ roslaunch gazebo_ros empty_world.launch
 
 ## Playing
 - > **WARNING**: If your joystick reference is different than 'js1':
-    - Please find the command below in **hummingbot.launch** file and change the value part with yours.
+    - Please find the command below in **hummingbot.launch** file and change the value with yours.
         ```xml
         <param name="dev" type="string" value="/dev/input/js1" /> 
         ```
@@ -69,7 +71,7 @@ roslaunch gazebo_ros empty_world.launch
 ```shell
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/build
 ```
-* **HINT : In order to run your plugins you should run the command above in every terminal session. But there is an easy way as always! If you do not want to write it everytime then you can add it into your .bashrc file with the commands below.**
+* **HINT : In order to run your plugins you should run the command above in every terminal session. But there is an easy way as always! If you do not want to write it every time then you can add it into your .bashrc file with the commands below.**
 
     ``` shell
     echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/build" >> ~/.bashrc
@@ -80,9 +82,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/buil
 roslaunch hummingbot hummingbot.launch
 ```
 
-
-
-### Test?
+## Test?
 
 ```shell
 rostopic echo /gazebo_hummingbot_client/left_vel
