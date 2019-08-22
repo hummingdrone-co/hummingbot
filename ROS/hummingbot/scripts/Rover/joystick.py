@@ -20,8 +20,8 @@ def callback(data):
     axis 0 aka left stick horizonal controls angular speed.
     """
     twist = Twist()
-    twist.linear.x = 4*data.axes[1]
-    twist.angular.z = 4*data.axes[0]
+    twist.linear.x = data.axes[1]
+    twist.angular.z = data.axes[0]
     pub.publish(twist)
 
 

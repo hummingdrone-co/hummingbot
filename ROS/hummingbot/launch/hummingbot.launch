@@ -9,4 +9,5 @@
     <param name="dev" type="string" value="/dev/input/js1" />
   </node>
   <node name="joy_teleop" pkg="hummingbot" type="joystick.py"/>
+  <param name="velocity_coef" value="4" type="double"/>
 </launch>
