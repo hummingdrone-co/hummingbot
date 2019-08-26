@@ -9,5 +9,11 @@
     <param name="dev" type="string" value="/dev/input/js1" />
   </node>
   <node name="joy_teleop" pkg="hummingbot" type="joystick.py"/>
+  
+  <!--parameters -->
   <param name="velocity_coef" value="4" type="double"/>
+  <!--dynamic topics-->
+  <param name="velocity_topic_left"  value="/gazebo_hummingbot_client/left_vel"  type="string"/>
+  <param name="velocity_topic_right" value="/gazebo_hummingbot_client/right_vel" type="string"/>
+  
 </launch>
