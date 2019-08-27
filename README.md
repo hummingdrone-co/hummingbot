@@ -8,7 +8,7 @@ Hummingdrone Nvidia Jetbot integration
 #### Install Gazebo Model
 
 ```shell
-cp ./Gazebo/Model/hummingbot_* ~/.gazebo/models
+cp -r ./Gazebo/Model/hummingbot ~/.gazebo/models
 ```
 
 #### Install Gazebo Plugins
