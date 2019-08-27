@@ -88,3 +88,44 @@ roslaunch hummingbot hummingbot.launch
 rostopic echo /gazebo_hummingbot_client/left_vel
 ```
 **You should see the velocity of left wheel.**
+
+
+
+# Remote ROS Connection
+
+Here explains how to start and control ROS system using multiple machines. ***ROS_MASTER_URI*** let you  configure multiple machines to use a **single** ROS master.
+
+Lets think;
+
+- First machine's IP address : 192.168.1.1
+
+- Second machine's IP address: 192.168.1.2
+
+First runs motor and control. Second runs joystick.
+
+- Export IP addresses **for both of them**.
+
+```shell
+export ROS_IP="Machine's own IP ADDRESS"
+```
+
+- For **SECOND** machine:
+
+```shell
+export ROS_MASTER_URI=http://192.168.1.1:11311 
+# exports the ros master's port of first machine
+```
+
+- For **FIRST** machine:
+
+```shell
+roslaunch hummingbot robot.launch
+```
+
+- For **SECOND** machine:
+
+```shell
+roslaunch hummingbot remote.launch
+```
+
+**Now you should control your hummingbot by using remote machine!**
