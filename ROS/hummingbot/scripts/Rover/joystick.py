@@ -52,6 +52,5 @@ if __name__ == '__main__':
     rospy.loginfo("Waiting for Joy message!")
 
     rospy.Subscriber(SUB_TOPIC_NAME, Joy, callback)
-    rospy.wait_for_service(SRV_TOPIC_NAME)
 
     rospy.spin()
