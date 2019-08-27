@@ -8,20 +8,20 @@ Hummingdrone Nvidia Jetbot integration
 #### Install Gazebo Model
 
 ```shell
-cp ./Gazebo/Model/Hummingbot_* ~/.gazebo/models
+cp ./Gazebo/Model/hummingbot_* ~/.gazebo/models
 ```
 
 #### Install Gazebo Plugins
 
 ```shell
 mkdir ~/catkin_ws/src/hummingbot_plugin/
-cp ./Gazebo/Plugins/* ~/catkin_ws/src/hummingbot_plugin/ -rf
+cp -r ./Gazebo/Plugins/* ~/catkin_ws/src/hummingbot_plugin/ -rf
 ```
 
 #### Install ROS Packages
 
 ```shell
-cp ./ROS/hummingbot/ ~/catkin_ws/src/
+cp -r ./ROS/hummingbot/ ~/catkin_ws/src/
 ```
 
 #### Build Your Packages and Plugins
@@ -63,7 +63,7 @@ roslaunch gazebo_ros empty_world.launch
 
 ## Playing
 - > **WARNING**: If your joystick reference is different than 'js1':
-    - Please find the command below in **hummingbot.launch** file and change the value with yours.
+    - Please find the command below in **simulation.launch** file and change the value with yours.
         ```xml
         <param name="dev" type="string" value="/dev/input/js1" /> 
         ```
@@ -79,7 +79,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/buil
     ```
 - **Finally, run and control your hummingbot!**
 ```shell
-roslaunch hummingbot hummingbot.launch
+roslaunch hummingbot simulation.launch
 ```
 
 ## Test?
