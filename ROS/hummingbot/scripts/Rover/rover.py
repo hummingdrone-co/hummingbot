@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#Authors : Hasan Basri Aykol [basri@hummingdrone.co],
-#          Mustafa Durmuş    [mustafa@hummingdrone.co]
+# Authors : Hasan Basri Aykol [basri@hummingdrone.co],
+#           Mustafa Durmuş    [mustafa@hummingdrone.co]
 
 import rospy
 from geometry_msgs.msg import Twist
@@ -9,7 +9,7 @@ from std_msgs.msg import Float32
 
 NODE_NAME = "rover"
 SUB_TOPIC_NAME = "/control"
-PUB_TOPIC_NAMES = ['/gazebo_hummingbot_client/left_vel','/gazebo_hummingbot_client/right_vel']
+VELOCITY_TOPIC_PARAMS = ['velocity_topic_left','velocity_topic_right']
 VELOCITY_COEF_PARAM = 'velocity_coef'
 
 def calculate_velocity(linear,angular):
@@ -51,12 +51,14 @@ if __name__ == '__main__':
     # node created
     rospy.init_node(NODE_NAME)
 
-    #Read velocity coefficient parameter
+    #Read velocity topics and coefficient parameter
     vel_coef = rospy.get_param(VELOCITY_COEF_PARAM)
+    vel_topic_left = rospy.get_param(VELOCITY_TOPIC_PARAMS[0])
+    vel_topic_right = rospy.get_param(VELOCITY_TOPIC_PARAMS[1])
 
     # publishers created
-    pub_left  = rospy.Publisher(PUB_TOPIC_NAMES[0],Float32,queue_size = 10)
-    pub_right = rospy.Publisher(PUB_TOPIC_NAMES[1],Float32,queue_size = 10)
+    pub_left  = rospy.Publisher(vel_topic_left,Float32,queue_size = 10)
+    pub_right = rospy.Publisher(vel_topic_right,Float32,queue_size = 10)
 
     # message types created
     msg_left  = Float32()
