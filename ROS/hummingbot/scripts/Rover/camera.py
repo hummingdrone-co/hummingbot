@@ -27,7 +27,6 @@ def callback(img):
     #Show image
     cv2.imshow('a', frame)
     cv2.waitKey(1000)
-    cv2.destroyAllWindows()
 
 if __name__ == '__main__':
     rospy.init_node('rover_camera_receiver')
@@ -40,3 +39,6 @@ if __name__ == '__main__':
     sub = rospy.Subscriber(CAMERA_TOPIC_NAME, Image, callback)
 
     rospy.spin()
+
+    if rospy.is_shutdown():
+        cv2.destroyAllWindows()
