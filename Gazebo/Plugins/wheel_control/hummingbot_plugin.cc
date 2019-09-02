@@ -47,13 +47,13 @@ namespace gazebo
             this->model = _model;
 
             //Get left wheel joint
-            this->leftJoint = this->model->GetJoints()[2]; // this->model->GetJoint("left_wheel_hinge");  
+            this->leftJoint = this->model->GetJoints()[3]; // this->model->GetJoint("left_wheel_hinge");  
             
             //joint debug
             //std::cerr << "Name: " << this->leftJoint->GetScopedName() << "\n?"; 
 
             //Get right wheel joint
-            this->rightJoint = this->model->GetJoints()[3];// _model->GetJoint("right_wheel_hinge");
+            this->rightJoint = this->model->GetJoints()[4];// _model->GetJoint("right_wheel_hinge");
 
 
             //Setup the P-controller, with a gain of 0.1/

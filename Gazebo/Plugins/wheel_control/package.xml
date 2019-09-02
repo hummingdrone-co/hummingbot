@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>hummingbot_plugin</name>
+  <name>hummingbot_plugin_wheel_control</name>
   <version>0.0.0</version>
   <description>The hummingbot_plugin package</description>
 
