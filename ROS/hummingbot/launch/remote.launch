@@ -1,9 +1,0 @@
-<launch>
-
-  <node name="joy" respawn="true" pkg="joy" type="joy_node">
-    <param name="dev" type="string" value="/dev/input/js0"/>
-  </node>
-  <node name="joy_teleop" pkg="hummingbot" type="joystick.py"/>
-  
-</launch>
-

@@ -3,13 +3,10 @@
     <arg name="world_name" value="$(find hummingbot_plugin)/hummingbot_test.world"/>
   </include>
   
-<!-- NODES -->
-  <node name="joy" respawn="true" pkg="joy" type="joy_node">
-    <param name="dev" type="string" value="/dev/input/js1" />
-  </node>
-  <node name="joy_teleop" pkg="hummingbot" type="joystick.py"/>
-  <node name="rover" pkg="hummingbot" type="rover.py"/>
-  
+  <node name="rover" pkg="hummingbot" type="rover.py"/>  
+  <!--for web socket connection-->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+
   <!--parameters -->
   <param name="velocity_coef" value="4" type="double"/>
   <!--dynamic topics-->
