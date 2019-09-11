@@ -1,0 +1,16 @@
+<launch>
+  <!--NODES-->
+  <node pkg="hummingbot" type="publisher_node.py" name="publisher" />
+  <node pkg="hummingbot" type="joystick.py" name="joystick" />
+  <node pkg="hummingbot" type="rover.py" name="rover_control" />
+
+  <!--parameters -->
+  <param name="velocity_coef" value="4" type="double"/>
+  <!--dynamic topics-->
+  <param name="velocity_topic_left"  value="/gazebo_hummingbot_client/left_vel"  type="string"/>
+  <param name="velocity_topic_right" value="/gazebo_hummingbot_client/right_vel" type="string"/>
+  <!--TEST NODE-->
+  <test pkg="hummingbot" type="test_node.py" test-name="test_node"  />
+  
+  
+</launch>

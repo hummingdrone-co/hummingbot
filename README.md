@@ -82,16 +82,58 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/catkin_ws/src/hummingbot_plugin/buil
 roslaunch hummingbot simulation.launch
 ```
 
-## Test?
+## Testing
+
+- **Testing Stop Service**
 
 ```shell
-rostopic echo /gazebo_hummingbot_client/left_vel
+rostest hummingbot hummingbot.test
 ```
-**You should see the velocity of left wheel.**
 
+You should see the output below. That means all tests passed and succeed.
 
+```
+SUMMARY
+ * RESULT: SUCCESS
+ * TESTS: 3
+ * ERRORS: 0
+ * FAILURES: 0
+```
 
-# Remote ROS Connection
+In this case there are 3 test types for the velocities of any wheel.
+
+- greater or equal
+- less or equal
+- **equal to zero (when stop service is called it should be zero)**
+
+**Important:** No need to check the type of variable. ROS does not allow to any topic that publishes a variable different than its type. 
+
+Now joy message includes stop button too. If you remove stop button from the message, test_stop_service method should be failed. **That also shows our stop service is working!**
+
+Lets remove it and try again!
+
+```shell
+cd ROS/hummingbot/scripts/test/
+```
+
+Find here **publisher.py** file and **BUTTON_MSG** constant inside of the file.
+
+Stop button of joystick is represented as **BUTTON_MSG[3]**.
+
+- If you make that value zero, means no call for stop service.
+- If you make that value one, means there is a call for stop service.
+
+So change it as zero, and call test file again. You should see the output below.
+
+```
+SUMMARY
+ * RESULT: FAIL
+ * TESTS: 3
+ * ERRORS: 0
+ * FAILURES: 1
+```
+
+## Remote ROS Connection
 
 Here explains how to start and control ROS system using multiple machines. ***ROS_MASTER_URI*** let you  configure multiple machines to use a **single** ROS master.
 

@@ -1,0 +1,17 @@
+<launch>
+<!--REAL WORLD LAUNCH FILE with CONNECTED JOYSTICK-->
+<!-- NODES -->
+  <node name="joy" respawn="true" pkg="joy" type="joy_node">
+    <param name="dev" type="string" value="/dev/input/js1" />
+  </node>
+  <node name="joy_teleop" pkg="hummingbot" type="joystick.py"/>
+  <node name="rover" pkg="hummingbot" type="rover.py"/>
+  <node name="motor_control" pkg="hummingbot" type="motor_control.py"/>
+
+  <!--parameters -->
+  <param name="velocity_coef" value="255.0" type="double"/>
+  <!--dynamic topics-->
+    <param name="velocity_topic_left"  value="/gazebo_hummingbot/left_vel"  type="string"/>
+    <param name="velocity_topic_right" value="/gazebo_hummingbot/right_vel" type="string"/>
+  
+</launch>
