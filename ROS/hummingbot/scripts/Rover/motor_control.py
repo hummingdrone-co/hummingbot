@@ -35,9 +35,9 @@ def set_motor_speed(speed, motor_id):
     else:
         motor = motor_right
 
-    motor.setSpeed(speed)
+    motor.setSpeed(int(abs(speed)))
 
-    if speed > 0:
+    if speed >= 0:
         motor.run(Adafruit_MotorHAT.FORWARD)
     else:
         motor.run(Adafruit_MotorHAT.BACKWARD)
