@@ -7,8 +7,7 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT
 from std_msgs.msg import String, Float32
 
 NODE_NAME = "motor_control"
-SUB_TOPIC_NAMES = ["/gazebo_hummingbot/left_vel",
-                   "/gazebo_hummingbot/right_vel"]
+VELOCITY_TOPIC_PARAMS = ["/velocity_topic_left", "velocity_topic_right"]
 
 
 # stops all motors
@@ -62,7 +61,7 @@ if __name__ == '__main__':
     motor_right_ID = 2
 
     # get motor drivers
-    motor_left =  motor_driver.getMotor(motor_left_ID)
+    motor_left  =  motor_driver.getMotor(motor_left_ID)
     motor_right = motor_driver.getMotor(motor_right_ID)
 
     # stop the motors as precaution
@@ -71,8 +70,13 @@ if __name__ == '__main__':
     # setup ros node
     rospy.init_node(NODE_NAME)
 
-    rospy.Subscriber(SUB_TOPIC_NAMES[0], Float32, callback_left)
-    rospy.Subscriber(SUB_TOPIC_NAMES[1], Float32, callback_right)
+    # take dynamic topic names from launch file
+    vel_topic_left = rospy.get_param(VELOCITY_TOPIC_PARAMS[0])
+    vel_topic_right = rospy.get_param(VELOCITY_TOPIC_PARAMS[1])
+
+    # create subscribers
+    rospy.Subscriber(vel_topic_left, Float32, callback_left)
+    rospy.Subscriber(vel_topic_right, Float32, callback_right)
 
     # start running
     rospy.spin()

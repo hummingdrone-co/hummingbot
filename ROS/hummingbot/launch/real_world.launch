@@ -11,7 +11,7 @@
   <!--parameters -->
   <param name="velocity_coef" value="255.0" type="double"/>
   <!--dynamic topics-->
-    <param name="velocity_topic_left"  value="/gazebo_hummingbot/left_vel"  type="string"/>
-    <param name="velocity_topic_right" value="/gazebo_hummingbot/right_vel" type="string"/>
+  <param name="velocity_topic_left"  value="/hummingbot/left_vel"  type="string"/>
+  <param name="velocity_topic_right" value="/hummingbot/right_vel" type="string"/>
   
 </launch>
